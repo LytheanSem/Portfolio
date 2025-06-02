@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-card: hsl(var(--card));
+
+  --animate-typing: typing 3.5s steps(40, end);
+  --animate-cursor: blink-caret 0.75s step-end infinite;
+  --animate-code-fade: code-fade 0.5s ease-out forwards;
+  --animate-terminal: terminal 0.5s ease-out forwards;
+  --animate-matrix-drop: matrix-drop 2s linear infinite;
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: hsl(var(--primary));
+    }
+  }
+
+  @keyframes code-fade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes terminal {
+    0% {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    100% {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+  }
+
+  @keyframes matrix-drop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 220 25% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 25% 10%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 210 40% 98%;
+
+    --border: 217 33% 20%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 15%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+
+    --border: 217 33% 20%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >= 640px) {
+    max-width: 640px;
+  }
+
+  @media (width >= 768px) {
+    max-width: 768px;
+  }
+
+  @media (width >= 1024px) {
+    max-width: 1024px;
+  }
+
+  @media (width >= 1280px) {
+    max-width: 1280px;
+  }
+
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@utility code-block {
+  @apply relative rounded-lg bg-card p-4 font-mono text-sm;
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@utility terminal-window {
+  @apply relative rounded-lg bg-card p-4;
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@utility code-button {
+  @apply px-6 py-2 rounded-md bg-primary text-primary-foreground font-mono
+        transition-all duration-300 hover:shadow-[0_0_10px_rgba(34,197,94,0.5)]
+        hover:scale-105 active:scale-95;
+}
+
+@utility matrix-drop {
+  @apply absolute w-[20px] font-mono text-primary/60;
+  animation: matrix-drop 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  background: transparent;
+}
+
+.matrix-char {
+  @apply block text-sm leading-tight text-primary/60;
+  text-shadow: 0 0 3px hsl(var(--primary));
+  transition: opacity 0.3s ease-in-out;
+}
+
+.matrix-head {
+  @apply font-bold text-primary/80;
+  text-shadow: 0 0 5px hsl(var(--primary));
+  transition: all 0.3s ease-in-out;
+}
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
