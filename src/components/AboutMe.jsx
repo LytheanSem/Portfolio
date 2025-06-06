@@ -16,7 +16,7 @@ function AboutMe() {
             </h3>
 
             <p className="text-muted-foreground">
-              I have over 4 years of experience in web development, I specialize
+              I have over years of experience in web development, I specialize
               in building highly responsive, accessible, and fucntional websites
               using modern technologies.
             </p>
@@ -83,8 +83,8 @@ function AboutMe() {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg"> Experience</h4>
                   <p className="text-muted-foreground">
-                    With over 4 years of experience in this field and other
-                    related fields.
+                    With years of experience in this field and other related
+                    fields.
                   </p>
                 </div>
               </div>
